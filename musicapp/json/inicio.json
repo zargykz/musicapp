@@ -1,0 +1,37 @@
+[
+    {
+        "rating": "4.8",
+        "title":"GUSTAVO CERATI",
+        "text":"Argentino de corazon",
+        "img":"img/cerati.jpg",
+        "audio":"cerati.mp3"
+    },
+    {
+        "rating": "4.6",
+        "title":"BANDALOS CHINOS",
+        "text":"Indie directo de argentina",
+        "img":"img/bandalos.jpg",
+        "audio":"bandalos.mp3"
+    },
+    {
+        "rating": "4.4",
+        "title":"REX ORANGE COUNTY",
+        "text":"Lovin' is easy",
+        "img":"img/rex.jpg",
+        "audio":"rex.mp3"
+    },
+    {
+        "rating": "4.2",
+        "title":"LEON LARREGUI",
+        "text":"No Existe el amor",
+        "img":"img/leon.jpg",
+        "audio":"leon.mp3"
+    },
+    {
+        "rating": "4.5",
+        "title":"LUIS FONSI",
+        "text":"El boom antes y despues",
+        "img":"img/fonsi.jpg",
+        "audio":"fonsi.mp3"
+    }
+]

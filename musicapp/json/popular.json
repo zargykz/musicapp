@@ -1,0 +1,44 @@
+[
+    {
+        "rating": "4.5",
+        "title":"REGGAETON",
+        "text":"Lo mejor del reggaeton",
+        "img":"img/reggaeton.jpg",
+        "audio":"reggaeton.mp3"
+    },
+    {
+        "rating": "4.5",
+        "title":"POP",
+        "text":"Lo mejor del POP",
+        "img":"img/pop.jpg",
+        "audio":"pop.mp3"
+    },
+    {
+        "rating": "4.5",
+        "title":"ROCK",
+        "text":"Lo mejor del Rock",
+        "img":"img/rock.jpg",
+        "audio":"rock.mp3"
+    },
+    {
+        "rating": "4.5",
+        "title":"SALSA",
+        "text":"Lo mejor de la Salsa",
+        "img":"img/salsa.jpg",
+        "audio":"salsa.mp3"
+    },
+    {
+        "rating": "4.5",
+        "title":"BOSSA",
+        "text":"Lo mejor de Bossa",
+        "img":"img/bossa.jpg",
+        "audio":"bossa.mp3"
+    },
+    {
+        "rating": "4.5",
+        "title":"INSTRUMENTAL",
+        "text":"Lo mejor de Bossa",
+        "img":"img/instrumental.jpg",
+        "audio":"instrumental.mp3"
+    }
+]
