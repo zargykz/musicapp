@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'app_colors.dart' as AppColors;
+import 'package:audioplayers/audioplayers.dart';
+
+import 'audio_file.dart';
 
 class DetailAudioPage extends StatefulWidget {
   const DetailAudioPage({Key? key}) : super(key: key);
@@ -9,6 +12,13 @@ class DetailAudioPage extends StatefulWidget {
 }
 
 class _DetailAudioPageState extends State<DetailAudioPage> {
+  AudioPlayer advancedPlayer = AudioPlayer();
+  @override
+  void initState() {
+    super.initState();
+    advancedPlayer = AudioPlayer();
+  }
+
   @override
   Widget build(BuildContext context) {
     final double screenHeight = MediaQuery.of(context).size.height;
@@ -70,6 +80,7 @@ class _DetailAudioPageState extends State<DetailAudioPage> {
                       "Justin Bieber",
                       style: TextStyle(fontSize: 15),
                     ),
+                    AudioFile(advancedPlayer: advancedPlayer),
                   ],
                 ),
               )),
