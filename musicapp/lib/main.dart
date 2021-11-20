@@ -1,3 +1,4 @@
+import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:musicapp/detail_audio_page.dart';
 import 'my_home_page.dart';
@@ -16,7 +17,12 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(),
+      home: AnimatedSplashScreen(
+        splash: Image.asset("img/musell.png"),
+        nextScreen: MyHomePage(),
+        splashTransition: SplashTransition.scaleTransition,
+        splashIconSize: 300,
+      ),
     );
   }
 }
