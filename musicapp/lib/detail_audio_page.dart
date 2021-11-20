@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_this
+
 import 'package:flutter/material.dart';
 import 'app_colors.dart' as AppColors;
 import 'package:audioplayers/audioplayers.dart';
@@ -5,8 +7,10 @@ import 'package:audioplayers/audioplayers.dart';
 import 'audio_file.dart';
 
 class DetailAudioPage extends StatefulWidget {
-  const DetailAudioPage({Key? key}) : super(key: key);
-
+  final inicialData;
+  final int index;
+  const DetailAudioPage({Key? key, this.inicialData, required this.index})
+      : super(key: key);
   @override
   _DetailAudioPageState createState() => _DetailAudioPageState();
 }
@@ -43,7 +47,10 @@ class _DetailAudioPageState extends State<DetailAudioPage> {
                 leading: IconButton(
                   // ignore: prefer_const_constructors
                   icon: Icon(Icons.arrow_back_ios),
-                  onPressed: () {},
+                  onPressed: () {
+                    advancedPlayer.stop();
+                    Navigator.of(context).pop();
+                  },
                 ),
                 actions: [
                   IconButton(
@@ -68,19 +75,22 @@ class _DetailAudioPageState extends State<DetailAudioPage> {
                     SizedBox(
                       height: screenHeight * 0.1,
                     ),
-                    const Text(
-                      "THE WATOFOK",
-                      style: TextStyle(
+                    Text(
+                      this.widget.inicialData[this.widget.index]["title"],
+                      style: const TextStyle(
                         fontSize: 26,
                         fontWeight: FontWeight.bold,
                         fontFamily: "Avenir",
                       ),
                     ),
                     Text(
-                      "Justin Bieber",
+                      this.widget.inicialData[this.widget.index]["text"],
                       style: TextStyle(fontSize: 15),
                     ),
-                    AudioFile(advancedPlayer: advancedPlayer),
+                    AudioFile(
+                        advancedPlayer: advancedPlayer,
+                        audioPath: this.widget.inicialData[this.widget.index]
+                            ["audio"]),
                   ],
                 ),
               )),
@@ -104,7 +114,7 @@ class _DetailAudioPageState extends State<DetailAudioPage> {
                     border: Border.all(color: Colors.white, width: 3),
                     image: DecorationImage(
                       image: AssetImage(
-                        "img/leon.jpg",
+                        this.widget.inicialData[this.widget.index]["img"],
                       ),
                       fit: BoxFit.fill,
                     ),

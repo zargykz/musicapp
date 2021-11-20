@@ -6,6 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:musicapp/my_tabs.dart';
 import 'app_colors.dart' as AppColors;
+import 'detail_audio_page.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);
@@ -158,92 +159,104 @@ class _MyHomePageState extends State<MyHomePage>
                   ];
                 },
                 body: TabBarView(
+                  //Aca se controlan las tab view
                   controller: _tabController,
                   children: [
                     ListView.builder(
                         itemCount: inicio == null ? 0 : inicio.length,
                         itemBuilder: (_, i) {
-                          return Container(
-                              margin: const EdgeInsets.only(
-                                  left: 20, right: 20, top: 10, bottom: 10),
+                          return GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => DetailAudioPage(
+                                            inicialData: inicio, index: i)));
+                              },
                               child: Container(
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    color: AppColors.tabVarViewColor,
-                                    boxShadow: [
-                                      BoxShadow(
-                                        blurRadius: 2,
-                                        offset: Offset(0, 0),
-                                        color: Colors.grey.withOpacity(0.2),
-                                      )
-                                    ]),
+                                margin: const EdgeInsets.only(
+                                    left: 20, right: 20, top: 10, bottom: 10),
                                 child: Container(
-                                  padding: const EdgeInsets.all(8),
-                                  child: Row(
-                                    children: [
-                                      Container(
-                                          width: 90,
-                                          height: 120,
-                                          decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
-                                              image: DecorationImage(
-                                                  image: AssetImage(
-                                                    inicio[i]["img"],
-                                                  ),
-                                                  fit: BoxFit.fill))),
-                                      SizedBox(
-                                        width: 10,
-                                      ),
-                                      Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Row(
-                                            children: [
-                                              Icon(
-                                                Icons.star,
-                                                size: 24,
-                                                color: AppColors.starColor,
-                                              ),
-                                              SizedBox(
-                                                width: 5,
-                                              ),
-                                              Text(inicio[i]["rating"],
-                                                  style: TextStyle(
-                                                      color:
-                                                          AppColors.menu2Color))
-                                            ],
-                                          ),
-                                          Text(inicio[i]["title"],
-                                              style: TextStyle(
-                                                  fontSize: 15,
-                                                  fontFamily: "Avenir",
-                                                  fontWeight: FontWeight.bold)),
-                                          Text(inicio[i]["text"],
-                                              style: TextStyle(
-                                                  fontSize: 15,
-                                                  fontFamily: "Avenir",
-                                                  color:
-                                                      AppColors.subTitleText)),
-                                          Container(
-                                            width: 60,
-                                            height: 15,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      color: AppColors.tabVarViewColor,
+                                      boxShadow: [
+                                        BoxShadow(
+                                          blurRadius: 2,
+                                          offset: Offset(0, 0),
+                                          color: Colors.grey.withOpacity(0.2),
+                                        )
+                                      ]),
+                                  child: Container(
+                                    padding: const EdgeInsets.all(8),
+                                    child: Row(
+                                      children: [
+                                        Container(
+                                            width: 90,
+                                            height: 120,
                                             decoration: BoxDecoration(
                                                 borderRadius:
-                                                    BorderRadius.circular(3),
-                                                color: AppColors.loveColor),
-                                            child: Text("Love",
+                                                    BorderRadius.circular(10),
+                                                image: DecorationImage(
+                                                    image: AssetImage(
+                                                      inicio[i]["img"],
+                                                    ),
+                                                    fit: BoxFit.fill))),
+                                        SizedBox(
+                                          width: 10,
+                                        ),
+                                        Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Row(
+                                              children: [
+                                                Icon(
+                                                  Icons.star,
+                                                  size: 24,
+                                                  color: AppColors.starColor,
+                                                ),
+                                                SizedBox(
+                                                  width: 5,
+                                                ),
+                                                Text(inicio[i]["rating"],
+                                                    style: TextStyle(
+                                                        color: AppColors
+                                                            .menu2Color))
+                                              ],
+                                            ),
+                                            Text(inicio[i]["title"],
                                                 style: TextStyle(
-                                                    fontSize: 1,
+                                                    fontSize: 15,
                                                     fontFamily: "Avenir",
-                                                    fontWeight: FontWeight.bold,
-                                                    color: Colors.white70)),
-                                            alignment: Alignment.center,
-                                          ),
-                                        ],
-                                      )
-                                    ],
+                                                    fontWeight:
+                                                        FontWeight.bold)),
+                                            Text(inicio[i]["text"],
+                                                style: TextStyle(
+                                                    fontSize: 15,
+                                                    fontFamily: "Avenir",
+                                                    color: AppColors
+                                                        .subTitleText)),
+                                            Container(
+                                              width: 60,
+                                              height: 15,
+                                              decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(3),
+                                                  color: AppColors.loveColor),
+                                              child: Text("Love",
+                                                  style: TextStyle(
+                                                      fontSize: 1,
+                                                      fontFamily: "Avenir",
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      color: Colors.white70)),
+                                              alignment: Alignment.center,
+                                            ),
+                                          ],
+                                        )
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ));

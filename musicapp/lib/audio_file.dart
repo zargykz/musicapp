@@ -3,7 +3,10 @@ import 'package:flutter/material.dart';
 
 class AudioFile extends StatefulWidget {
   final AudioPlayer advancedPlayer;
-  const AudioFile({Key? key, required this.advancedPlayer}) : super(key: key);
+  final String audioPath;
+  const AudioFile(
+      {Key? key, required this.advancedPlayer, required this.audioPath})
+      : super(key: key);
 
   @override
   _AudioFileState createState() => _AudioFileState();
@@ -12,8 +15,6 @@ class AudioFile extends StatefulWidget {
 class _AudioFileState extends State<AudioFile> {
   Duration _duration = new Duration();
   Duration _position = new Duration();
-  final String path =
-      "https://d2c3ct5w4v6137.cloudfront.net/youtube_FNCOe01yZkU/251/Le%C3%B3n%20Larregui%20-%20Souvenir%20(Audio)_160k.mp3";
   bool isPlaying = false;
   bool isPaused = false;
   bool isRepeat = false;
@@ -37,7 +38,7 @@ class _AudioFileState extends State<AudioFile> {
       });
     });
 
-    this.widget.advancedPlayer.setUrl(path);
+    this.widget.advancedPlayer.setUrl(this.widget.audioPath);
     this.widget.advancedPlayer.onPlayerCompletion.listen((event) {
       setState(() {
         _position = Duration(seconds: 0);
@@ -60,7 +61,7 @@ class _AudioFileState extends State<AudioFile> {
             : Icon(_icons[1], size: 48, color: Colors.blue),
         onPressed: () {
           if (isPlaying == false) {
-            this.widget.advancedPlayer.play(path);
+            this.widget.advancedPlayer.play(this.widget.audioPath);
             setState(() {
               isPlaying = true;
             });
