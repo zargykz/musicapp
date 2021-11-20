@@ -2,6 +2,7 @@
 
 import 'dart:convert';
 
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:musicapp/my_tabs.dart';
@@ -90,30 +91,34 @@ class _MyHomePageState extends State<MyHomePage>
                 height: 180,
                 child: Stack(children: [
                   Positioned(
-                    top: 0,
-                    left: -20,
-                    right: 0,
-                    child: SizedBox(
-                      height: 180,
-                      child: PageView.builder(
-                          controller: PageController(viewportFraction: 0.8),
-                          itemCount:
-                              // ignore: unnecessary_null_comparison
-                              popularSongs == null ? 0 : popularSongs.length,
-                          itemBuilder: (_, i) {
-                            return Container(
-                              height: 180,
-                              width: MediaQuery.of(context).size.width,
-                              margin: const EdgeInsets.only(right: 10),
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(15),
-                                  image: DecorationImage(
-                                      image: AssetImage(popularSongs[i]["img"]),
-                                      fit: BoxFit.fill)),
-                            );
-                          }),
-                    ),
-                  )
+                      top: 0,
+                      left: -20,
+                      right: 0,
+                      child: SizedBox(
+                        height: 180,
+                        child: BounceInDown(
+                          child: PageView.builder(
+                              controller: PageController(viewportFraction: 0.8),
+                              itemCount:
+                                  // ignore: unnecessary_null_comparison
+                                  popularSongs == null
+                                      ? 0
+                                      : popularSongs.length,
+                              itemBuilder: (_, i) {
+                                return Container(
+                                  height: 180,
+                                  width: MediaQuery.of(context).size.width,
+                                  margin: const EdgeInsets.only(right: 10),
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(15),
+                                      image: DecorationImage(
+                                          image: AssetImage(
+                                              popularSongs[i]["img"]),
+                                          fit: BoxFit.fill)),
+                                );
+                              }),
+                        ),
+                      )),
                 ]),
               ),
               Expanded(
@@ -125,37 +130,40 @@ class _MyHomePageState extends State<MyHomePage>
                         pinned: true,
                         backgroundColor: AppColors.sliverBackground,
                         bottom: PreferredSize(
-                          preferredSize: Size.fromHeight(50),
-                          child: Container(
-                            margin: const EdgeInsets.only(bottom: 20),
-                            child: TabBar(
-                              indicatorPadding: const EdgeInsets.all(0),
-                              indicatorSize: TabBarIndicatorSize.label,
-                              labelPadding: const EdgeInsets.only(left: 8),
-                              controller: _tabController,
-                              isScrollable: true,
-                              indicator: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  boxShadow: [
-                                    BoxShadow(
-                                        color: Colors.grey.withOpacity(0.2),
-                                        blurRadius: 7,
-                                        offset: Offset(0, 0))
-                                  ]),
-                              tabs: [
-                                AppTabs(
-                                    color: AppColors.menu1Color,
-                                    text: "Nuevas"),
-                                AppTabs(
-                                    color: AppColors.menu2Color,
-                                    text: "Favoritas"),
-                                AppTabs(
-                                    color: AppColors.menu3Color,
-                                    text: "Trending")
-                              ],
-                            ),
-                          ),
-                        ))
+                            preferredSize: Size.fromHeight(50),
+                            child: ElasticIn(
+                                child: Container(
+                                  margin: const EdgeInsets.only(bottom: 20),
+                                  child: TabBar(
+                                    indicatorPadding: const EdgeInsets.all(0),
+                                    indicatorSize: TabBarIndicatorSize.label,
+                                    labelPadding:
+                                        const EdgeInsets.only(left: 8),
+                                    controller: _tabController,
+                                    isScrollable: true,
+                                    indicator: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                        boxShadow: [
+                                          BoxShadow(
+                                              color:
+                                                  Colors.grey.withOpacity(0.2),
+                                              blurRadius: 7,
+                                              offset: Offset(0, 0))
+                                        ]),
+                                    tabs: [
+                                      AppTabs(
+                                          color: AppColors.menu1Color,
+                                          text: "Nuevas"),
+                                      AppTabs(
+                                          color: AppColors.menu2Color,
+                                          text: "Favoritas"),
+                                      AppTabs(
+                                          color: AppColors.menu3Color,
+                                          text: "Trending")
+                                    ],
+                                  ),
+                                ),
+                                duration: Duration(seconds: 3))))
                   ];
                 },
                 body: TabBarView(
@@ -174,98 +182,105 @@ class _MyHomePageState extends State<MyHomePage>
                                             inicialData: inicio, index: i)));
                               },
                               child: Container(
-                                margin: const EdgeInsets.only(
-                                    left: 20, right: 20, top: 10, bottom: 10),
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      color: AppColors.tabVarViewColor,
-                                      boxShadow: [
-                                        BoxShadow(
-                                          blurRadius: 2,
-                                          offset: Offset(0, 0),
-                                          color: Colors.grey.withOpacity(0.2),
-                                        )
-                                      ]),
+                                  margin: const EdgeInsets.only(
+                                      left: 20, right: 20, top: 10, bottom: 10),
                                   child: Container(
-                                    padding: const EdgeInsets.all(8),
-                                    child: Row(
-                                      children: [
-                                        Container(
-                                            width: 90,
-                                            height: 120,
-                                            decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(10),
-                                                image: DecorationImage(
-                                                    image: AssetImage(
-                                                      inicio[i]["img"],
-                                                    ),
-                                                    fit: BoxFit.fill))),
-                                        SizedBox(
-                                          width: 10,
-                                        ),
-                                        Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                        color: AppColors.tabVarViewColor,
+                                        boxShadow: [
+                                          BoxShadow(
+                                            blurRadius: 2,
+                                            offset: Offset(0, 0),
+                                            color: Colors.grey.withOpacity(0.2),
+                                          )
+                                        ]),
+                                    child: Container(
+                                      padding: const EdgeInsets.all(8),
+                                      child: SlideInRight(
+                                        child: Row(
                                           children: [
-                                            Row(
-                                              children: [
-                                                Icon(
-                                                  Icons.star,
-                                                  size: 24,
-                                                  color: AppColors.starColor,
-                                                ),
-                                                SizedBox(
-                                                  width: 5,
-                                                ),
-                                                Text(inicio[i]["rating"],
-                                                    style: TextStyle(
-                                                        color: AppColors
-                                                            .menu2Color))
-                                              ],
-                                            ),
-                                            Text(inicio[i]["title"],
-                                                style: TextStyle(
-                                                    fontSize: 15,
-                                                    fontFamily: "Avenir",
-                                                    fontWeight:
-                                                        FontWeight.bold)),
-                                            Text(inicio[i]["text"],
-                                                style: TextStyle(
-                                                    fontSize: 15,
-                                                    fontFamily: "Avenir",
-                                                    color: AppColors
-                                                        .subTitleText)),
                                             Container(
-                                              width: 60,
-                                              height: 15,
-                                              decoration: BoxDecoration(
-                                                  borderRadius:
-                                                      BorderRadius.circular(3),
-                                                  color: AppColors.loveColor),
-                                              child: Text("Love",
-                                                  style: TextStyle(
-                                                      fontSize: 1,
-                                                      fontFamily: "Avenir",
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      color: Colors.white70)),
-                                              alignment: Alignment.center,
+                                                width: 90,
+                                                height: 120,
+                                                decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10),
+                                                    image: DecorationImage(
+                                                        image: AssetImage(
+                                                          inicio[i]["img"],
+                                                        ),
+                                                        fit: BoxFit.fill))),
+                                            SizedBox(
+                                              width: 10,
                                             ),
+                                            Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Row(
+                                                  children: [
+                                                    Icon(
+                                                      Icons.star,
+                                                      size: 24,
+                                                      color:
+                                                          AppColors.starColor,
+                                                    ),
+                                                    SizedBox(
+                                                      width: 5,
+                                                    ),
+                                                    Text(inicio[i]["rating"],
+                                                        style: TextStyle(
+                                                            color: AppColors
+                                                                .menu2Color))
+                                                  ],
+                                                ),
+                                                Text(inicio[i]["title"],
+                                                    style: TextStyle(
+                                                        fontSize: 15,
+                                                        fontFamily: "Avenir",
+                                                        fontWeight:
+                                                            FontWeight.bold)),
+                                                Text(inicio[i]["text"],
+                                                    style: TextStyle(
+                                                        fontSize: 15,
+                                                        fontFamily: "Avenir",
+                                                        color: AppColors
+                                                            .subTitleText)),
+                                                Container(
+                                                  width: 60,
+                                                  height: 15,
+                                                  decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              3),
+                                                      color:
+                                                          AppColors.loveColor),
+                                                  child: Text("Love",
+                                                      style: TextStyle(
+                                                          fontSize: 14,
+                                                          fontFamily: "Avenir",
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          color:
+                                                              Colors.white70)),
+                                                  alignment: Alignment.center,
+                                                ),
+                                              ],
+                                            )
                                           ],
-                                        )
-                                      ],
+                                        ),
+                                        duration: Duration(seconds: 3),
+                                      ),
                                     ),
-                                  ),
-                                ),
-                              ));
+                                  )));
                         }),
                     Material(
                         child: ListTile(
-                      leading: CircleAvatar(backgroundColor: Colors.grey),
-                      title: Text("Aca debo poner lo demas"),
-                    )),
+                            //Agregar algo aca
+
+                            )),
                     Material(
                         child: ListTile(
                       leading: CircleAvatar(backgroundColor: Colors.grey),
